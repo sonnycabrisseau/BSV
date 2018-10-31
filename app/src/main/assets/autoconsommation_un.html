@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <title></title>
+</head>
+<body>
+<div id="container-page-trois"><div class="background">
+    <div class="menu-left">
+        <a href="file:///android_asset/index.html"><div class="bloc-accueil">
+            <img src="file:///android_res/drawable/arrow.png">
+            <p>Accueil</p>
+        </div></a>
+
+        <div class="menu-left-position">
+            <a href="file:///android_asset/peak_shaving_un.html"><div class="bloc-image-menu  "><img src="file:///android_res/drawable/graph_menu.png"></div></a>
+            <a href="file:///android_asset/autoconsommation_un.html"><div class="bloc-image-menu active"><img src="file:///android_res/drawable/heolien_menu.png"></div></a>
+            <a href="file:///android_asset/time_shifting_un.html"><div class="bloc-image-menu"><img src="file:///android_res/drawable/cochon_menu.png"></div></a>
+            <a href="file:///android_asset/ilot_un.html"><div class="bloc-image-menu"><img src="file:///android_res/drawable/ilot_menu.png"></div></a>
+
+        </div>
+    </div>
+    <div class="bloc-titre color-white">
+        <h1>Autoconsommation</h1>
+        <p>Avec les ENR, l'énergie produite n'est consommé qu'en journée<br />
+            et le surplus est perdu</p>
+
+    </div>
+    <div class="bloc-batterie">
+        <div class="bloc-image-batterie"><div id="drag" class="unactivated"><img  src="file:///android_res/drawable/batterie.png"></div></div>
+        <div class="bloc-image-fleche show color-white"><img src="file:///android_res/drawable/fleche.png">
+            <p>Déplacez la batterie pour voir l’impact sur le scénario</p></div>
+        <div id="drop" class="bloc-image-socle-batterie"><img  src="file:///android_res/drawable/socle_batterie.png"><p class="text-batterie color-white hide">Batterie en service </p></div>
+    </div>
+    <div class="bloc show">
+        <div class="bloc-premier-bloc"> De nuit sans batterie</div>
+        <div class="bloc-deuxieme-bloc">150<span class="euro">€</span> <span class="text-apres-euro">de dépense</span></div>
+        <div class="bloc-troisieme-bloc">De nuit et à faible vent, l'énergie parvient de<br />votre fournisseur d’énergie.</div>
+        <div class="bloc-quatrieme-bloc"><img src="file:///android_res/drawable/graph_autocons.png"></div>
+
+    </div>
+    <div class="button_sur_bloc hide"><a href="file:///android_asset/autoconsommation_deux.html"><button>Comment se recharge la batterie ?</button></a></div>
+    <div class="bloc_deux hide">
+        <div class="bloc-premier-bloc"> De nuit sans batterie</div>
+        <div class="bloc-deuxieme-bloc color-vert">50<span class="euro">€</span> <span class="text-apres-euro">de dépense</span></div>
+        <div class="bloc-troisieme-bloc">La batterie, chargée durant la journée prend<br />le relais et fournit l'énergie nécessaire.</div>
+        <div class="bloc-quatrieme-bloc"><img src="file:///android_res/drawable/graph_autocons_avec_bat.png"></div>
+
+    </div>
+</div></div>
+<script src="file:///android_asset/jquery-3.3.1.min.js"></script>
+<script src="file:///android_asset/jquery-ui.min.js"></script>
+<script src="file:///android_asset/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript" src="file:///android_asset/dragAndDrop.js"></script>
+</body>
+</html>
