@@ -244,6 +244,8 @@ void peakShavingAvecBatterie() //Scénario 1 numéro 2
   reverseNum--;
   delay(normalSpeed);
   }
+
+ delay(normalSpeed);
  digitalWrite(LED_PIN, LOW);
 }
 
@@ -331,6 +333,7 @@ void autoConsommationDejourAvecBatterie() //Scénario 2 numéro 3
 
 void autoConsommationDeNuitAvecBatterie() //Scénaro 2 numéro 4
 {
+  digitalWrite(LED_PIN, HIGH);
   int reverseNum = 48;
   for(int i = 0; i < 48; i++)
   {
@@ -394,6 +397,7 @@ void autoConsommationDeNuitAvecBatterie() //Scénaro 2 numéro 4
   }
 
   delay(normalSpeed);
+  digitalWrite(LED_PIN, LOW);
 }
 
 void autoConsommationDeNuitSansBatterie() //Scénario 2 numéro 5
@@ -448,6 +452,7 @@ void autoConsommationDeNuitSansBatterie() //Scénario 2 numéro 5
 
 void ilotAvecBatterie() //Scénario 3 numéro 6
 {
+  digitalWrite(LED_PIN, HIGH);
   int reverseNum = 44;
   for(int i = 0; i < 44; i++)
   {
@@ -516,6 +521,7 @@ void ilotAvecBatterie() //Scénario 3 numéro 6
   }
 
   delay(normalSpeed);
+  digitalWrite(LED_PIN, LOW);
 }
 
 
@@ -773,6 +779,7 @@ void timeShiftingHeuresPleinesAvecBatterie() //Scénario 4 numéro 10
   delay(normalSpeed);
   }
  digitalWrite(LED_PIN, LOW);
+ delay(normalSpeed);
 }
 
 void timeShiftingHeuresPleinesSansBatterie() //Scénario 4 numéro 11
