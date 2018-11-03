@@ -31,6 +31,9 @@ $( function() {
         var class_grad = $( "#drag" ).attr('class')
         console.log(class_grad)
 
+        checkLed ();
+
+
          }
      })
     $( ".bloc-image-batterie" ).droppable({
@@ -62,9 +65,58 @@ $( function() {
             $(".bloc-image-fleche").removeClass("hide")
             $(".bloc-image-fleche").addClass("show")
             class_grad = $( "#drag" ).attr('class')
-            console.log(class_grad)
+            console.log(class_grad);
+
+            checkLed ();
 
        }
     })
-
 });
+
+function checkLed ()
+{
+    if ($('#peakShavingSansBatterie').is(':visible'))
+    {
+        JavaScriptInterface.sendMessage('peakShavingSansBatterie');
+    }
+    else if(($('#peakShavingAvecBatterie').is(':visible')))
+    {
+        JavaScriptInterface.sendMessage('peakShavingAvecBatterie');
+    }
+    else if(($('#autoConsommationDejourAvecBatterie').is(':visible')))
+    {
+        JavaScriptInterface.sendMessage('autoConsommationDejourAvecBatterie');
+    }
+    else if(($('#autoConsommationDeNuitAvecBatterie').is(':visible')))
+    {
+        JavaScriptInterface.sendMessage('autoConsommationDeNuitAvecBatterie');
+    }
+    else if(($('#autoConsommationDeNuitSansBatterie').is(':visible')))
+    {
+        JavaScriptInterface.sendMessage('autoConsommationDeNuitSansBatterie');
+    }
+    else if(($('#ilotAvecBatterie').is(':visible')))
+    {
+        JavaScriptInterface.sendMessage('ilotAvecBatterie');
+    }
+    else if(($('#ilotSansBatterie').is(':visible')))
+    {
+        JavaScriptInterface.sendMessage('ilotSansBatterie');
+    }
+    else if(($('#timeShiftingHeuresCreusesAvecBatterie').is(':visible')))
+    {
+        JavaScriptInterface.sendMessage('timeShiftingHeuresCreusesAvecBatterie');
+    }
+    else if(($('#timeShiftingHeuresCreusesSansBatterie').is(':visible')))
+    {
+        JavaScriptInterface.sendMessage('timeShiftingHeuresCreusesSansBatterie');
+    }
+    else if(($('#timeShiftingHeuresPleinesAvecBatterie').is(':visible')))
+    {
+        JavaScriptInterface.sendMessage('timeShiftingHeuresPleinesAvecBatterie');
+    }
+    else if(($('#timeShiftingHeuresPleinesSansBatterie').is(':visible')))
+    {
+        JavaScriptInterface.sendMessage('timeShiftingHeuresPleinesSansBatterie');
+    }
+};

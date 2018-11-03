@@ -33,7 +33,7 @@ int GREEN[3] = {0, 255, 25};
 int CYAN[3] = {0, 255, 255};
 
 //Speed definition
-int normalSpeed = 200; //100
+int normalSpeed = 100; //100
 int ascenseurSpeed = 20;
 int lagSpeed = 20;
 
@@ -64,11 +64,11 @@ void setup()
 
 void loop() 
 {
-  stripUsine.setBrightness(20);
-  stripER.setBrightness(20);
-  stripBatterie.setBrightness(20);
-  stripMaison.setBrightness(20);
-  stripVoiture.setBrightness(20);
+  stripUsine.setBrightness(100);
+  stripER.setBrightness(100);
+  stripBatterie.setBrightness(100);
+  stripMaison.setBrightness(100);
+  stripVoiture.setBrightness(100);
 
   if(msg.equals("peakShavingSansBatterie") || msg.equals("1"))
   {
@@ -115,6 +115,10 @@ void loop()
     timeShiftingHeuresPleinesSansBatterie();
   }
   else if(msg.equals("off"))
+  {
+    off();
+  }
+  else
   {
     off();
   }
@@ -978,7 +982,7 @@ void serialEvent()
   {
     char inChar = (char)Serial.read();
     
-    if (inChar == '\n')
+    if (inChar == '0')
     {
       msg = tmpMessage;
       tmpMessage = "";

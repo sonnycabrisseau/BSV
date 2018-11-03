@@ -33,8 +33,8 @@
 
         <div  class="bloc-image-socle-batterie-auto-deux"><img  src="file:///android_res/drawable/socle_batterie.png"><p class="text-batterie ">Batterie en service </p></div>
     </div>
-    <div class="bloc ">
-        <div class="bloc-premier-bloc"> De nuit sans batterie</div>
+    <div class="bloc " id="autoConsommationDejourAvecBatterie">
+        <div class="bloc-premier-bloc"> De jour avec batterie</div>
         <div class="bloc-deuxieme-bloc color-vert">50<span class="euro">€</span> <span class="text-apres-euro">de dépense</span></div>
         <div class="bloc-troisieme-bloc">Le surplus d'ENR recharge la batterie.</div>
         <div class="bloc-quatrieme-bloc"><img src="file:///android_res/drawable/graph_autocons_avec_bat.png"></div>
@@ -46,5 +46,10 @@
 <script src="file:///android_asset/jquery-ui.min.js"></script>
 <script src="file:///android_asset/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="file:///android_asset/dragAndDrop.js"></script>
+
+<script>
+    checkLed();
+</script>
+
 </body>
 </html>

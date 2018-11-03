@@ -36,7 +36,7 @@
             <p>Déplacez la batterie pour voir l’impact sur le scénario</p></div>
         <div id="drop" class="bloc-image-socle-batterie"><img  src="file:///android_res/drawable/socle_batterie.png"><p class="text-batterie hide">Batterie en service </p></div>
     </div>
-    <div class="blocs show">
+    <div class="blocs show"  id="ilotSansBatterie">
         <div class="bloc-premier-bloc"> Ilôt sans batterie</div>
         <div class="bloc-deuxieme-bloc">49<span>Hz</span></div>
         <div class="bloc-troisieme-bloc">La grande consommation d'énergie provoque<br /> une baisse de fréquence et risque d'endommager<br /> les appareils concernés.</div>
@@ -44,7 +44,7 @@
 
     </div>
 
-    <div class="blocs_deux hide">
+    <div class="blocs_deux hide" id="ilotAvecBatterie">
         <div class="bloc-premier-bloc"> Ilôt avec batterie</div>
         <div class="bloc-deuxieme-bloc color-vert">50<span>Hz</span></div>
         <div class="bloc-troisieme-bloc">La grande consommation d'énergie provoque<br /> une baisse de tension mais la batterie la régule<br /> avant de la transmettre aux appareils domestiques.</div>
@@ -56,5 +56,10 @@
 <script src="file:///android_asset/jquery-ui.min.js"></script>
 <script src="file:///android_asset/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="file:///android_asset/dragAndDrop.js"></script>
+
+<script>
+    checkLed();
+</script>
+
 </body>
 </html>
