@@ -16,7 +16,10 @@
 #define MID_VOITURE_COUNT 9
 
 #define ASCENSEUR_PIN 11
-#define ASCENSEUR_COUNT 10
+#define ASCENSEUR_COUNT 7
+
+#define ASCENSEURBIS_PIN 12
+#define ASCENSEURBIS_COUNT 7
 
 #define LED_PIN 4
 
@@ -25,7 +28,9 @@ Adafruit_NeoPixel stripER = Adafruit_NeoPixel(MID_ER_COUNT, MID_ER_PIN, NEO_GRB 
 Adafruit_NeoPixel stripBatterie = Adafruit_NeoPixel(MID_BATTERIE_COUNT, MID_BATTERIE_PIN, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel stripMaison = Adafruit_NeoPixel(MID_MAION_COUNT, MID_MAISON_PIN, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel stripVoiture = Adafruit_NeoPixel(MID_VOITURE_COUNT, MID_VOITURE_PIN, NEO_GRB + NEO_KHZ800);
-//Adafruit_NeoPixel stripAscenseur = Adafruit_NeoPixel(ASCENSEUR_COUNT, ASCENSEUR_PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel stripAscenseur = Adafruit_NeoPixel(ASCENSEUR_COUNT, ASCENSEUR_PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel stripAscenseurBis = Adafruit_NeoPixel(ASCENSEURBIS_COUNT, ASCENSEURBIS_PIN, NEO_GRB + NEO_KHZ800);
+
 
 
 //Colors definition
@@ -34,8 +39,13 @@ int CYAN[3] = {0, 255, 255};
 
 //Speed definition
 int normalSpeed = 100; //100
-int ascenseurSpeed = 20;
+int ascenseurSpeed = 3;
 int lagSpeed = 20;
+
+int ascenseurLevel = 0; //last level = 6;
+bool ascenseurUp = true;
+bool ascenseurDown = false;
+bool offFirstFloor = false;
 
 String msg = "";
 bool newStringComplete = false;
@@ -48,14 +58,16 @@ void setup()
   stripBatterie.begin();
   stripMaison.begin();
   stripVoiture.begin();
-  //stripAscenseur.begin();
+  stripAscenseur.begin();
+  stripAscenseurBis.begin();
   
   stripUsine.show();
   stripER.show();
   stripBatterie.show();
   stripMaison.show();
   stripVoiture.show();
-  //stripAscenseur.show();
+  stripAscenseur.show();
+  stripAscenseurBis.show();
 
   pinMode(LED_PIN, OUTPUT);
 
@@ -69,6 +81,8 @@ void loop()
   stripBatterie.setBrightness(100);
   stripMaison.setBrightness(100);
   stripVoiture.setBrightness(100);
+  stripAscenseur.setBrightness(100);
+  stripAscenseurBis.setBrightness(100);
 
   if(msg.equals("peakShavingSansBatterie") || msg.equals("1"))
   {
@@ -170,12 +184,14 @@ void peakShavingSansBatterie() //Sénario 1 numéro 1
       stripVoiture.setPixelColor(i-40, 0, 0, 0);
       stripVoiture.show();
     }
+
+    ascenseur(i, 38);
     
     reverseNum--;
     delay(normalSpeed);
   }
 
-  delay(normalSpeed);
+  //delay(normalSpeed);
 }
 
 void peakShavingAvecBatterie() //Scénario 1 numéro 2
@@ -244,6 +260,8 @@ void peakShavingAvecBatterie() //Scénario 1 numéro 2
       stripVoiture.setPixelColor(i-39, 0, 0, 0);
       stripVoiture.show();
     }
+
+    ascenseur(i, 37);
 
   reverseNum--;
   delay(normalSpeed);
@@ -327,6 +345,8 @@ void autoConsommationDejourAvecBatterie() //Scénario 2 numéro 3
       stripVoiture.setPixelColor(i-40, 0, 0, 0);
       stripVoiture.show();
     }
+
+    ascenseur(i, 38);
     
     reverseNum--;
     delay(normalSpeed);
@@ -396,6 +416,8 @@ void autoConsommationDeNuitAvecBatterie() //Scénaro 2 numéro 4
       stripMaison.show();
     }
 
+    ascenseur(i, 36);
+
     reverseNum--;
     delay(normalSpeed);
   }
@@ -446,6 +468,8 @@ void autoConsommationDeNuitSansBatterie() //Scénario 2 numéro 5
       stripMaison.setPixelColor(i - 39, 0, 0, 0);
       stripMaison.show();
     }
+
+    ascenseur(i, 36);
 
     reverseNum--;
     delay(normalSpeed);
@@ -519,6 +543,8 @@ void ilotAvecBatterie() //Scénario 3 numéro 6
       stripVoiture.setPixelColor(i - 35, 0, 0, 0);
       stripVoiture.show();
     }
+
+    ascenseur(i, 33);
     
     reverseNum--;
     delay(normalSpeed);
@@ -650,6 +676,8 @@ void timeShiftingHeuresCreusesAvecBatterie() //Scénario 4 numéro 8
       stripVoiture.setPixelColor(i-40, 0, 0, 0);
       stripVoiture.show();
     }
+
+    ascenseur(i, 38);
     
     reverseNum--;
     delay(normalSpeed);
@@ -704,6 +732,7 @@ void timeShiftingHeuresCreusesSansBatterie() //Scénario 4 numéro 9
       stripVoiture.setPixelColor(i-40, 0, 0, 0);
       stripVoiture.show();
     }
+    ascenseur(i, 38);
     
     reverseNum--;
     delay(normalSpeed);
@@ -779,6 +808,8 @@ void timeShiftingHeuresPleinesAvecBatterie() //Scénario 4 numéro 10
       stripVoiture.show();
     }
 
+    ascenseur(i, 37);
+
   reverseNum--;
   delay(normalSpeed);
   }
@@ -832,12 +863,101 @@ void timeShiftingHeuresPleinesSansBatterie() //Scénario 4 numéro 11
       stripVoiture.setPixelColor(i-40, 0, 0, 0);
       stripVoiture.show();
     }
+
+    ascenseur(i, 38);
     
     reverseNum--;
     delay(normalSpeed);
   }
 
   delay(normalSpeed);
+}
+
+void ascenseur(int i, int startValue)
+{
+    if(ascenseurLevel == 0)
+    {
+      ascenseurUp = true;
+
+      if(ascenseurDown && ((i % 5) == 0))
+      {
+        stripAscenseur.setPixelColor(0, CYAN[0], CYAN[1], CYAN[2]);
+        stripAscenseur.setPixelColor(1, 0, 0, 0);
+        stripAscenseur.show(); 
+
+        stripAscenseurBis.setPixelColor(0, CYAN[0], CYAN[1], CYAN[2]);
+        stripAscenseurBis.setPixelColor(1, 0, 0, 0);
+        stripAscenseurBis.show(); 
+        
+        ascenseurDown = false;
+        offFirstFloor = true;
+      }
+      else if(offFirstFloor && ((i % 5) == 0))
+      {
+        stripAscenseur.setPixelColor(0, 0, 0, 0);
+        stripAscenseur.show(); 
+
+        stripAscenseurBis.setPixelColor(0, 0, 0, 0);
+        stripAscenseurBis.show(); 
+        
+        offFirstFloor = false;
+      }
+    }
+    else if(ascenseurLevel == 6)
+    {
+      ascenseurUp = false;
+    }
+    
+    //up
+    if(ascenseurUp && (i > startValue || ascenseurLevel > 0) && ((i % 5) == 0))
+    {
+      stripAscenseur.setPixelColor(ascenseurLevel + 1, 0, 0, 0);
+      stripAscenseur.setPixelColor(ascenseurLevel, CYAN[0], CYAN[1], CYAN[2]);
+      stripAscenseur.setPixelColor(ascenseurLevel - 1, 0, 0, 0);
+      stripAscenseur.show(); 
+
+      stripAscenseurBis.setPixelColor(ascenseurLevel + 1, 0, 0, 0);
+      stripAscenseurBis.setPixelColor(ascenseurLevel, CYAN[0], CYAN[1], CYAN[2]);
+      stripAscenseurBis.setPixelColor(ascenseurLevel - 1, 0, 0, 0);
+      stripAscenseurBis.show(); 
+      
+      ascenseurLevel++;
+    }
+    
+    //down
+    if(!ascenseurUp && ((i % 5) == 0))
+    {
+      stripAscenseur.setPixelColor(ascenseurLevel - 1, 0, 0, 0);
+      stripAscenseur.setPixelColor(ascenseurLevel, CYAN[0], CYAN[1], CYAN[2]);
+      stripAscenseur.setPixelColor(ascenseurLevel + 1, 0, 0, 0);
+      stripAscenseur.show();
+
+      stripAscenseurBis.setPixelColor(ascenseurLevel - 1, 0, 0, 0);
+      stripAscenseurBis.setPixelColor(ascenseurLevel, CYAN[0], CYAN[1], CYAN[2]);
+      stripAscenseurBis.setPixelColor(ascenseurLevel + 1, 0, 0, 0);
+      stripAscenseurBis.show();
+      
+      ascenseurLevel--;
+      ascenseurDown = true;
+    }
+}
+
+void offAscenseur()
+{
+
+  ascenseurLevel = 0; //last level = 6;
+  ascenseurUp = true;
+  ascenseurDown = false;
+  offFirstFloor = false;
+  
+  for(int i = 0; i < 7; i++)
+  {
+    stripAscenseur.setPixelColor(i, 0, 0, 0);
+    stripAscenseur.show();
+
+    stripAscenseurBis.setPixelColor(i, 0, 0, 0);
+    stripAscenseurBis.show();
+  }
 }
 
 /*Misc*/
@@ -957,6 +1077,8 @@ void allChenillard()
 
 void off()
 {
+  offAscenseur();
+  
   for(int i = 0; i < 25; i++)
   {
     stripUsine.setPixelColor(i, 0, 0, 0);
@@ -973,6 +1095,12 @@ void off()
 
     stripVoiture.setPixelColor(i, 0, 0, 0);
     stripVoiture.show();
+
+    stripAscenseur.setPixelColor(i, 0, 0, 0);
+    stripAscenseur.show();
+
+    stripAscenseurBis.setPixelColor(i, 0, 0, 0);
+    stripAscenseurBis.show();
   }
 }
 
@@ -986,6 +1114,7 @@ void serialEvent()
     {
       msg = tmpMessage;
       tmpMessage = "";
+      off();
       //Serial.println(msg);
     }
     else
