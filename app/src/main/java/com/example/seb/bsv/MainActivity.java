@@ -12,7 +12,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
@@ -89,6 +91,10 @@ public class MainActivity extends Activity
                 String myurl = "file:///android_asset/index.html";
                 WebView view = (WebView) MainActivity.this.findViewById(R.id.webView);
                 view.getSettings().setJavaScriptEnabled(true);
+
+                //try to accelerate the application
+                view.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+                view.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
 
                 //envoie de l'interface pour pour les messages bluetooth
                 view.addJavascriptInterface(javaScriptInterface, "JavaScriptInterface");
