@@ -110,7 +110,10 @@ public class MainActivity extends Activity
         @Override
         public void onConnect(final OneSheeldDevice device)
         {
-            //todo
+            String message = "off";
+            Log.i(this.getClass().getName(), "Message send : " + message.concat("0"));
+            byte[] data = message.concat("0").getBytes();
+            arduino.sendSerialData(data);
         }
 
         @Override
