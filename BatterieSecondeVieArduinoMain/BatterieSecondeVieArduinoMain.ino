@@ -197,6 +197,7 @@ void peakShavingSansBatterie() //Sénario 1 numéro 1
 void peakShavingAvecBatterie() //Scénario 1 numéro 2
 {
   digitalWrite(LED_PIN, HIGH);
+  batterieTopLedOn();
   int reverseNum = 49;
   for(int i = 0; i < 48; i++)
   {
@@ -269,6 +270,7 @@ void peakShavingAvecBatterie() //Scénario 1 numéro 2
 
  delay(normalSpeed);
  digitalWrite(LED_PIN, LOW);
+ batterieTopLedOff();
 }
 
 void autoConsommationDejourAvecBatterie() //Scénario 2 numéro 3
@@ -358,6 +360,7 @@ void autoConsommationDejourAvecBatterie() //Scénario 2 numéro 3
 void autoConsommationDeNuitAvecBatterie() //Scénaro 2 numéro 4
 {
   digitalWrite(LED_PIN, HIGH);
+  batterieTopLedOn();
   int reverseNum = 48;
   for(int i = 0; i < 48; i++)
   {
@@ -424,6 +427,7 @@ void autoConsommationDeNuitAvecBatterie() //Scénaro 2 numéro 4
 
   delay(normalSpeed);
   digitalWrite(LED_PIN, LOW);
+  batterieTopLedOff();
 }
 
 void autoConsommationDeNuitSansBatterie() //Scénario 2 numéro 5
@@ -481,6 +485,7 @@ void autoConsommationDeNuitSansBatterie() //Scénario 2 numéro 5
 void ilotAvecBatterie() //Scénario 3 numéro 6
 {
   digitalWrite(LED_PIN, HIGH);
+  batterieTopLedOn();
   int reverseNum = 44;
   for(int i = 0; i < 44; i++)
   {
@@ -552,6 +557,7 @@ void ilotAvecBatterie() //Scénario 3 numéro 6
 
   delay(normalSpeed);
   digitalWrite(LED_PIN, LOW);
+  batterieTopLedOff();
 }
 
 
@@ -744,6 +750,7 @@ void timeShiftingHeuresCreusesSansBatterie() //Scénario 4 numéro 9
 void timeShiftingHeuresPleinesAvecBatterie() //Scénario 4 numéro 10
 {
   digitalWrite(LED_PIN, HIGH);
+  batterieTopLedOn();
   int reverseNum = 49;
   for(int i = 0; i < 48; i++)
   {
@@ -814,6 +821,7 @@ void timeShiftingHeuresPleinesAvecBatterie() //Scénario 4 numéro 10
   delay(normalSpeed);
   }
  digitalWrite(LED_PIN, LOW);
+ batterieTopLedOff();
  delay(normalSpeed);
 }
 
@@ -982,6 +990,24 @@ void chenillardUp(Adafruit_NeoPixel strip, int nbLed, int temps, int color[3])
     strip.setPixelColor(i+4, 0, 0, 0);
     strip.show();
   }
+}
+
+void batterieTopLedOff()
+{
+    stripAscenseur.setPixelColor(12, 0, 0, 0);
+    stripAscenseur.setPixelColor(13, 0, 0, 0);
+    stripAscenseur.setPixelColor(14, 0, 0, 0);
+    stripAscenseur.setPixelColor(15, 0, 0, 0);
+    stripAscenseur.show();
+}
+
+void batterieTopLedOn()
+{
+    stripAscenseur.setPixelColor(12, CYAN[0], CYAN[1], CYAN[2]);
+    stripAscenseur.setPixelColor(13, CYAN[0], CYAN[1], CYAN[2]);
+    stripAscenseur.setPixelColor(14, CYAN[0], CYAN[1], CYAN[2]);
+    stripAscenseur.setPixelColor(15, CYAN[0], CYAN[1], CYAN[2]);
+    stripAscenseur.show();
 }
 
 void chenillardDown(Adafruit_NeoPixel strip, int nbLed, int temps, int color[3])
