@@ -994,20 +994,20 @@ void chenillardUp(Adafruit_NeoPixel strip, int nbLed, int temps, int color[3])
 
 void batterieTopLedOff()
 {
-    stripAscenseur.setPixelColor(12, 0, 0, 0);
-    stripAscenseur.setPixelColor(13, 0, 0, 0);
-    stripAscenseur.setPixelColor(14, 0, 0, 0);
-    stripAscenseur.setPixelColor(15, 0, 0, 0);
-    stripAscenseur.show();
+    stripBatterie.setPixelColor(12, 0, 0, 0);
+    stripBatterie.setPixelColor(13, 0, 0, 0);
+    stripBatterie.setPixelColor(14, 0, 0, 0);
+    stripBatterie.setPixelColor(15, 0, 0, 0);
+    stripBatterie.show();
 }
 
 void batterieTopLedOn()
 {
-    stripAscenseur.setPixelColor(12, CYAN[0], CYAN[1], CYAN[2]);
-    stripAscenseur.setPixelColor(13, CYAN[0], CYAN[1], CYAN[2]);
-    stripAscenseur.setPixelColor(14, CYAN[0], CYAN[1], CYAN[2]);
-    stripAscenseur.setPixelColor(15, CYAN[0], CYAN[1], CYAN[2]);
-    stripAscenseur.show();
+    stripBatterie.setPixelColor(12, CYAN[0], CYAN[1], CYAN[2]);
+    stripBatterie.setPixelColor(13, CYAN[0], CYAN[1], CYAN[2]);
+    stripBatterie.setPixelColor(14, CYAN[0], CYAN[1], CYAN[2]);
+    stripBatterie.setPixelColor(15, CYAN[0], CYAN[1], CYAN[2]);
+    stripBatterie.show();
 }
 
 void chenillardDown(Adafruit_NeoPixel strip, int nbLed, int temps, int color[3])
