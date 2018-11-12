@@ -201,6 +201,7 @@ void peakShavingAvecBatterie() //Scénario 1 numéro 2
   int reverseNum = 49;
   for(int i = 0; i < 48; i++)
   {
+    batterieTopLedOn();
       stripUsine.setBrightness(5);
       stripUsine.setPixelColor(reverseNum - 25, CYAN[0], CYAN[1], CYAN[2]);
       stripUsine.show(); 
@@ -263,7 +264,7 @@ void peakShavingAvecBatterie() //Scénario 1 numéro 2
     }
 
     ascenseur(i, 37);
-
+  batterieTopLedOn();
   reverseNum--;
   delay(normalSpeed);
   }
@@ -364,6 +365,7 @@ void autoConsommationDeNuitAvecBatterie() //Scénaro 2 numéro 4
   int reverseNum = 48;
   for(int i = 0; i < 48; i++)
   {
+    batterieTopLedOn();
     stripUsine.setBrightness(5);
     stripUsine.setPixelColor(reverseNum - 24, CYAN[0], CYAN[1], CYAN[2]);
     stripUsine.show(); 
@@ -420,7 +422,7 @@ void autoConsommationDeNuitAvecBatterie() //Scénaro 2 numéro 4
     }
 
     ascenseur(i, 36);
-
+    batterieTopLedOn();
     reverseNum--;
     delay(normalSpeed);
   }
@@ -489,6 +491,7 @@ void ilotAvecBatterie() //Scénario 3 numéro 6
   int reverseNum = 44;
   for(int i = 0; i < 44; i++)
   {
+    batterieTopLedOn();
     //allume er avec lag
     if((i % 2) == 0)
     {
@@ -550,7 +553,7 @@ void ilotAvecBatterie() //Scénario 3 numéro 6
     }
 
     ascenseur(i, 33);
-    
+    batterieTopLedOn();
     reverseNum--;
     delay(normalSpeed);
   }
@@ -754,6 +757,7 @@ void timeShiftingHeuresPleinesAvecBatterie() //Scénario 4 numéro 10
   int reverseNum = 49;
   for(int i = 0; i < 48; i++)
   {
+      batterieTopLedOn();
       stripUsine.setBrightness(5);
       stripUsine.setPixelColor(reverseNum - 25, CYAN[0], CYAN[1], CYAN[2]);
       stripUsine.show(); 
@@ -815,8 +819,8 @@ void timeShiftingHeuresPleinesAvecBatterie() //Scénario 4 numéro 10
       stripVoiture.show();
     }
 
-    ascenseur(i, 37);
-
+  ascenseur(i, 37);
+  batterieTopLedOn();
   reverseNum--;
   delay(normalSpeed);
   }
@@ -994,6 +998,7 @@ void chenillardUp(Adafruit_NeoPixel strip, int nbLed, int temps, int color[3])
 
 void batterieTopLedOff()
 {
+    stripBatterie.setPixelColor(11, 0, 0, 0);
     stripBatterie.setPixelColor(12, 0, 0, 0);
     stripBatterie.setPixelColor(13, 0, 0, 0);
     stripBatterie.setPixelColor(14, 0, 0, 0);
@@ -1003,6 +1008,7 @@ void batterieTopLedOff()
 
 void batterieTopLedOn()
 {
+    stripBatterie.setPixelColor(11, CYAN[0], CYAN[1], CYAN[2]);
     stripBatterie.setPixelColor(12, CYAN[0], CYAN[1], CYAN[2]);
     stripBatterie.setPixelColor(13, CYAN[0], CYAN[1], CYAN[2]);
     stripBatterie.setPixelColor(14, CYAN[0], CYAN[1], CYAN[2]);
