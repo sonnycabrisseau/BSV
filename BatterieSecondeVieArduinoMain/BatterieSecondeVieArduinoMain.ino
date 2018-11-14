@@ -22,6 +22,7 @@
 #define ASCENSEURBIS_COUNT 7
 
 #define LED_PIN 4
+#define MOTOR_PIN 7
 
 Adafruit_NeoPixel stripUsine = Adafruit_NeoPixel(MID_USINE_COUNT, MID_USINE_PIN, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel stripER = Adafruit_NeoPixel(MID_ER_COUNT, MID_ER_PIN, NEO_GRB + NEO_KHZ800);
@@ -51,6 +52,8 @@ String msg = "";
 bool newStringComplete = false;
 String tmpMessage;
 
+int motorSpeed = 100; //From 0(0V) to 255(5V)
+
 void setup() 
 {
   stripUsine.begin();
@@ -70,6 +73,7 @@ void setup()
   stripAscenseurBis.show();
 
   pinMode(LED_PIN, OUTPUT);
+  pinMode(MOTOR_PIN, OUTPUT);
 
   Serial.begin(9600);
 }
@@ -277,6 +281,7 @@ void peakShavingAvecBatterie() //Scénario 1 numéro 2
 void autoConsommationDejourAvecBatterie() //Scénario 2 numéro 3
 {
   int reverseNum = 50;
+  analogWrite(MOTOR_PIN, motorSpeed);
   for(int i = 0; i < 50; i++)
   {
     stripUsine.setBrightness(5);
@@ -354,8 +359,8 @@ void autoConsommationDejourAvecBatterie() //Scénario 2 numéro 3
     reverseNum--;
     delay(normalSpeed);
   }
-
   delay(normalSpeed);
+  analogWrite(MOTOR_PIN, 0);
 }
 
 void autoConsommationDeNuitAvecBatterie() //Scénaro 2 numéro 4
@@ -487,6 +492,7 @@ void autoConsommationDeNuitSansBatterie() //Scénario 2 numéro 5
 void ilotAvecBatterie() //Scénario 3 numéro 6
 {
   digitalWrite(LED_PIN, HIGH);
+  analogWrite(MOTOR_PIN, motorSpeed);
   batterieTopLedOn();
   int reverseNum = 44;
   for(int i = 0; i < 44; i++)
@@ -560,6 +566,7 @@ void ilotAvecBatterie() //Scénario 3 numéro 6
 
   delay(normalSpeed);
   digitalWrite(LED_PIN, LOW);
+  analogWrite(MOTOR_PIN, 0);
   batterieTopLedOff();
 }
 
@@ -567,6 +574,7 @@ void ilotAvecBatterie() //Scénario 3 numéro 6
 void ilotSansBatterie() //Scénario 3 numéro 7
 {
   int reverseNum = 44;
+  analogWrite(MOTOR_PIN, motorSpeed);
   for(int i = 0; i < 44; i++)
   {
     //allume er avec lag
@@ -619,6 +627,7 @@ void ilotSansBatterie() //Scénario 3 numéro 7
     delay(normalSpeed);
   }
 
+  analogWrite(MOTOR_PIN, 0);
   delay(normalSpeed);
 }
 
@@ -956,7 +965,6 @@ void ascenseur(int i, int startValue)
 
 void offAscenseur()
 {
-
   ascenseurLevel = 0; //last level = 6;
   ascenseurUp = true;
   ascenseurDown = false;
@@ -1110,6 +1118,8 @@ void allChenillard()
 void off()
 {
   offAscenseur();
+  analogWrite(MOTOR_PIN, 0);
+  digitalWrite(LED_PIN, LOW);
   
   for(int i = 0; i < 25; i++)
   {
