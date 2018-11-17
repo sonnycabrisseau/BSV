@@ -205,7 +205,6 @@ void peakShavingAvecBatterie() //Scénario 1 numéro 2
   int reverseNum = 49;
   for(int i = 0; i < 48; i++)
   {
-    batterieTopLedOn();
       stripUsine.setBrightness(5);
       stripUsine.setPixelColor(reverseNum - 25, CYAN[0], CYAN[1], CYAN[2]);
       stripUsine.show(); 
@@ -280,6 +279,7 @@ void peakShavingAvecBatterie() //Scénario 1 numéro 2
 
 void autoConsommationDejourAvecBatterie() //Scénario 2 numéro 3
 {
+  digitalWrite(LED_PIN, HIGH);
   int reverseNum = 50;
   analogWrite(MOTOR_PIN, motorSpeed);
   for(int i = 0; i < 50; i++)
@@ -361,6 +361,7 @@ void autoConsommationDejourAvecBatterie() //Scénario 2 numéro 3
   }
   delay(normalSpeed);
   analogWrite(MOTOR_PIN, 0);
+  digitalWrite(LED_PIN, LOW);
 }
 
 void autoConsommationDeNuitAvecBatterie() //Scénaro 2 numéro 4
@@ -419,11 +420,25 @@ void autoConsommationDeNuitAvecBatterie() //Scénaro 2 numéro 4
       stripMaison.show();
     }
 
+    //allumer voiture
+    if(i > 28)
+    {
+      stripVoiture.setPixelColor(i - 30, CYAN[0], CYAN[1], CYAN[2]);
+      stripVoiture.show();
+    }
+
     //eteins maison
     if(i > 37)
     {
       stripMaison.setPixelColor(i - 39, 0, 0, 0);
       stripMaison.show();
+    }
+
+    //eteins voiture
+    if(i > 37)
+    {
+      stripVoiture.setPixelColor(i - 39, 0, 0, 0);
+      stripVoiture.show();
     }
 
     ascenseur(i, 36);
@@ -473,11 +488,25 @@ void autoConsommationDeNuitSansBatterie() //Scénario 2 numéro 5
       stripMaison.show();
     }
 
+    //allumer voiture
+    if(i > 28)
+    {
+      stripVoiture.setPixelColor(i - 30, CYAN[0], CYAN[1], CYAN[2]);
+      stripVoiture.show();
+    }
+
     //eteins maison
     if(i > 37)
     {
       stripMaison.setPixelColor(i - 39, 0, 0, 0);
       stripMaison.show();
+    }
+
+    //eteins voiture
+    if(i > 37)
+    {
+      stripVoiture.setPixelColor(i - 39, 0, 0, 0);
+      stripVoiture.show();
     }
 
     ascenseur(i, 36);
@@ -633,6 +662,7 @@ void ilotSansBatterie() //Scénario 3 numéro 7
 
 void timeShiftingHeuresCreusesAvecBatterie() //Scénario 4 numéro 8
 {
+  digitalWrite(LED_PIN, HIGH);
   int reverseNum = 50;
   for(int i = 0; i < 50; i++)
   {
@@ -702,6 +732,7 @@ void timeShiftingHeuresCreusesAvecBatterie() //Scénario 4 numéro 8
   }
 
   delay(normalSpeed);
+  digitalWrite(LED_PIN, LOW);
 }
 
 void timeShiftingHeuresCreusesSansBatterie() //Scénario 4 numéro 9
@@ -833,9 +864,9 @@ void timeShiftingHeuresPleinesAvecBatterie() //Scénario 4 numéro 10
   reverseNum--;
   delay(normalSpeed);
   }
- digitalWrite(LED_PIN, LOW);
- batterieTopLedOff();
  delay(normalSpeed);
+ batterieTopLedOff();
+ digitalWrite(LED_PIN, LOW);
 }
 
 void timeShiftingHeuresPleinesSansBatterie() //Scénario 4 numéro 11
