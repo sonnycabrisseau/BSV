@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <title></title>
+</head>
+<body>
+<div id="container-page-trois"><div class="background">
+    <div class="menu-left">
+        <a href="file:///android_asset/indexEn.html"><div class="bloc-accueil">
+            <img src="file:///android_res/drawable/arrow.png">
+            <p>Home</p>
+        </div></a>
+
+        <div class="menu-left-position">
+            <a href="file:///android_asset/peak_shaving_un_en.html"><div class="bloc-image-menu  "><img src="file:///android_res/drawable/graph_menu.png"></div></a>
+            <a href="file:///android_asset/autoconsommation_un_en.html"><div class="bloc-image-menu active"><img src="file:///android_res/drawable/heolien_menu.png"></div></a>
+            <a href="file:///android_asset/time_shifting_un_en.html"><div class="bloc-image-menu"><img src="file:///android_res/drawable/cochon_menu.png"></div></a>
+            <a href="file:///android_asset/ilot_un_en.html"><div class="bloc-image-menu"><img src="file:///android_res/drawable/ilot_menu.png"></div></a>
+
+        </div>
+    </div>
+    <div class="bloc-titre color-white">
+        <h1>Self Consumption</h1>
+        <p>With renewable energies, the energy produced is only consumed during the day <br />
+            and the excess is lost</p>
+
+    </div>
+    <div class="bloc-batterie">
+        <div class="bloc-image-batterie"><div id="drag" class="unactivated"><img  src="file:///android_res/drawable/batterie.png"></div></div>
+        <div class="bloc-image-fleche show color-white"><img src="file:///android_res/drawable/fleche.png">
+            <p>Move the battery to see the impact on the scenario</p></div>
+        <div id="drop" class="bloc-image-socle-batterie"><img  src="file:///android_res/drawable/socle_batterie.png"><p class="text-batterie color-white hide">Battery in use</p></div>
+    </div>
+    <div class="bloc show" id="autoConsommationDeNuitSansBatterie">
+        <div class="bloc-premier-bloc">Night consumption without battery</div>
+        <div class="bloc-deuxieme-bloc">1500<span class="euro">€</span> <span class="text-apres-euro">bill consumption</span></div>
+        <div class="bloc-troisieme-bloc">At night and in light wind, the energy comes from<br />the energy supplier.</div>
+        <div class="bloc-quatrieme-bloc"><img src="file:///android_res/drawable/schema_autoconso_2_en.png"></div>
+
+    </div>
+    <div class="button_sur_bloc hide"><a href="file:///android_asset/autoconsommation_deux_en.html"><button>How does the battery recharge?</button></a></div>
+    <div class="bloc_deux hide" id="autoConsommationDeNuitAvecBatterie">
+        <div class="bloc-premier-bloc">Night consumption with battery</div>
+        <div class="bloc-deuxieme-bloc color-vert">500<span class="euro">€</span> <span class="text-apres-euro">bill consumption</span></div>
+        <div class="bloc-troisieme-bloc">The battery charged during the daytakes over<br />and provides the necessary energy.</div>
+        <div class="bloc-quatrieme-bloc"><img src="file:///android_res/drawable/schema_autoconso_en.png"></div>
+
+    </div>
+</div></div>
+<script src="file:///android_asset/jquery-3.3.1.min.js"></script>
+<script src="file:///android_asset/jquery-ui.min.js"></script>
+<script src="file:///android_asset/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript" src="file:///android_asset/dragAndDrop.js"></script>
+<script>
+    var timeoutHandle;
+    $("body").on({'touchstart': function()
+    {
+        clearTimeout(timeoutHandle);
+        timeoutHandle = setTimeout(function()
+        {
+            window.location.href="file:///android_asset/indexEn.html";
+        }, 120000);
+        }
+    });
+</script>
+<script>
+    checkLed();
+</script>
+
+</body>
+</html>

@@ -9,45 +9,44 @@
 <body>
 <div id="container-page-cinq"><div class="background">
     <div class="menu-left">
-        <a href="file:///android_asset/index.html"><div class="bloc-accueil">
+        <a href="file:///android_asset/indexEn.html"><div class="bloc-accueil">
             <img src="file:///android_res/drawable/arrow.png">
-            <p>Accueil</p>
+            <p>Home</p>
         </div></a>
 
         <div class="menu-left-position">
-            <a href="file:///android_asset/peak_shaving_un.html"><div class="bloc-image-menu  "><img src="file:///android_res/drawable/graph_menu.png"></div></a>
-            <a href="file:///android_asset/autoconsommation_un.html"><div class="bloc-image-menu "><img src="file:///android_res/drawable/heolien_menu.png"></div></a>
-            <a href="file:///android_asset/time_shifting_un.html"><div class="bloc-image-menu"><img src="file:///android_res/drawable/cochon_menu.png"></div></a>
-            <a href="file:///android_asset/ilot_un.html"><div class="bloc-image-menu active"><img src="file:///android_res/drawable/ilot_menu.png"></div></a>
+            <a href="file:///android_asset/peak_shaving_un_en.html"><div class="bloc-image-menu  "><img src="file:///android_res/drawable/graph_menu.png"></div></a>
+            <a href="file:///android_asset/autoconsommation_un_en.html"><div class="bloc-image-menu "><img src="file:///android_res/drawable/heolien_menu.png"></div></a>
+            <a href="file:///android_asset/time_shifting_un_en.html"><div class="bloc-image-menu"><img src="file:///android_res/drawable/cochon_menu.png"></div></a>
+            <a href="file:///android_asset/ilot_un_en.html"><div class="bloc-image-menu active"><img src="file:///android_res/drawable/ilot_menu.png"></div></a>
 
         </div>
     </div>
     <div class="nuage-foreground"></div>
     <div class="nuage-background"></div>
     <div class="bloc-titre color-bleu">
-        <h1>Quartiers, Districts, Îles</h1>
-        <p>Stabilisez la fréquence de votre réseau dont les variations sont causées par <br />
-            les fluctuations du niveau d’ensoleillement</p>
+        <h1>Districts, Islands</h1>
+        <p>Stabilize the frequency of your network and control the impact of variations<br/> caused by sunlight level</p>
 
     </div>
     <div class="bloc-batterie">
         <div class="bloc-image-batterie"><div id="drag" class="unactivated"><img  src="file:///android_res/drawable/batterie.png"></div></div>
         <div class="bloc-image-fleche show"><img src="file:///android_res/drawable/fleche.png">
-            <p>Déplacez la batterie pour voir l’impact sur le scénario</p></div>
-        <div id="drop" class="bloc-image-socle-batterie"><img  src="file:///android_res/drawable/socle_batterie.png"><p class="text-batterie hide">Batterie en service </p></div>
+            <p>Move the battery to see the impact on the scenario</p></div>
+        <div id="drop" class="bloc-image-socle-batterie"><img  src="file:///android_res/drawable/socle_batterie.png"><p class="text-batterie hide">Battery in use</p></div>
     </div>
     <div class="blocs show"  id="ilotSansBatterie">
-        <div class="bloc-premier-bloc"> Quartiers, Districts, Îles sans batterie</div>
+        <div class="bloc-premier-bloc">Districts, Islands without battery</div>
         <div class="bloc-deuxieme-bloc">49<span>Hz</span></div>
-        <div class="bloc-troisieme-bloc">La fluctuation d’ensoleillement provoque<br /> une baisse de fréquence qui risque d’endommager<br />les appareils connectés.</div>
+        <div class="bloc-troisieme-bloc">The sunlight fluctuation cause a reduction<br /> in frequency and risk to damage the connected<br /> devices.</div>
         <div class="bloc-quatrieme-bloc"><img src="file:///android_res/drawable/graph_ilot.png"></div>
 
     </div>
 
     <div class="blocs_deux hide" id="ilotAvecBatterie">
-        <div class="bloc-premier-bloc"> Quartiers, Districts, Îles avec batterie</div>
+        <div class="bloc-premier-bloc">Districts, Islands with battery</div>
         <div class="bloc-deuxieme-bloc color-vert">50<span>Hz</span></div>
-        <div class="bloc-troisieme-bloc">La batterie permet de stabiliser la fréquence du réseau.</div>
+        <div class="bloc-troisieme-bloc">The battery stabilizes the grid frequency.</div>
         <div class="bloc-quatrieme-bloc"><img src="file:///android_res/drawable/graph_ilot_avec_bat.png"></div>
 
     </div>
@@ -65,7 +64,7 @@
         clearTimeout(timeoutHandle);
         timeoutHandle = setTimeout(function()
         {
-            window.location.href="file:///android_asset/index.html";
+            window.location.href="file:///android_asset/indexEn.html";
         }, 120000);
         }
     });

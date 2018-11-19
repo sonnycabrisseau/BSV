@@ -1,5 +1,5 @@
 //Animation de transitions des vignettes
-function click_vignette(numero, buttons)
+/*function click_vignette(numero, buttons)
 {
 
     // On récupère la vignette selectionné
@@ -19,12 +19,12 @@ function click_vignette(numero, buttons)
         loop: false
     })
 }
-
+*/
 //Réécriture du lien
-function link(href)
+/*function link(href)
 {
     window.location = href;
-}
+}*/
 
 //Animation d'apparition du texte
 function text_fade()
@@ -37,13 +37,13 @@ function text_fade()
         opacity: 0,
         translateY: 20,
         easing: 'easeOutExpo',
-        duration: 1500
+        duration: 800
     })
-    .add({
+    /*.add({
         targets: '#container-page-un',
         opacity: 1,
         easing: 'easeInSine'
-    })
+    })*/
     .add({
         targets: '.vignette',
         translateY: 0,
@@ -70,13 +70,13 @@ var buttons = document.querySelectorAll(".vignette");
 2) Récupère le numéro de la vignette
 3) Déclenche la fonction click_vignette
 4) Active le lien après l'animation*/
-for(var i = 0; i < buttons.length; i++) {
+/*for(var i = 0; i < buttons.length; i++) {
     var button = buttons[i];
     button.addEventListener("click", function(event){
         event.preventDefault();
         var href = this.href;
         var numero = this.getAttribute("data-order") - 1;
         click_vignette(numero, buttons);
-        setTimeout(link, 1000, href);
+        setTimeout(link, 500, href);
     })
-}
+}*/

@@ -112,6 +112,26 @@ a{
     margin:auto;
 }
 
+
+.logoB{
+    position:absolute;
+    top:55px;
+    left:100px;
+    width:200px;
+    height:200px;
+
+}
+
+.logoR{
+    position:absolute;
+    top:55px;
+    left:300px;
+    width:200px;
+    height:200px;
+
+}
+
+
 /*FIN MENU*/
 
 .color-vert{
@@ -374,6 +394,34 @@ width:100%;
     background-color:white;
   }
 
+  .bloc_trois{
+      width: 445px;
+      height: 495px;
+      float: right;
+      margin-top: 185px;
+      margin-right: 70px;
+      /*flex-wrap: wrap;*/
+      border-radius:10px;
+      text-align:justify;
+      padding-left: 50px;
+      box-shadow: 0px 10px 40px 0px rgba(109, 213, 250, 0.3);
+      background-color:white;
+    }
+
+    .bloc_quatre{
+        width: 445px;
+        height: 495px;
+        float: right;
+        margin-top: 185px;
+        margin-right: 70px;
+        /*flex-wrap: wrap;*/
+        border-radius:10px;
+        text-align:justify;
+        padding-left: 50px;
+        box-shadow: 0px 10px 40px 0px rgba(109, 213, 250, 0.3);
+        background-color:white;
+      }
+
 .bloc-batterie{
     position:absolute;
     top:234px;
@@ -386,10 +434,22 @@ width:100%;
 }
 
 .bloc-image-batterie{
-    width:85px;
-    height:80px;
+    width:100px;
+    height:100px;
     position: relative;
-    border: 1px dashed lightgrey;
+
+}
+
+.bloc-image-batterie-time{
+    width:100px;
+    height:100px;
+    position: relative;
+
+}
+
+.socle{
+background-image: url("file:///android_res/drawable/socle_batterie.png");
+background-repeat: no-repeat;
 }
 
 
@@ -402,7 +462,7 @@ width:100%;
 
 .bloc-image-fleche p{
     font-family: gotham;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -413,7 +473,7 @@ width:100%;
 
 .bloc-image-socle-batterie p{
     font-family: gotham;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -720,14 +780,20 @@ width:100%;
 
 
 
-/* Ajout David */
+/* Ajout David
 #container-page-un
 {
     opacity: 0;
-}
+}*/
 
 .vignette, #container-page-un p, #container-page-un span
 {
     opacity: 0;
 }
 
+.mirror
+{
+    position: fixed;
+    top: 242px;
+    left: 413px;
+}

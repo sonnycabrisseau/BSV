@@ -7,7 +7,7 @@
     <title></title>
 </head>
 <body>
-<div id="container-page-quatre"><div class="background">
+<div id="container-page-quatre"><div class="background-avec-batterie">
     <div class="menu-left">
         <a href="file:///android_asset/index.html"><div class="bloc-accueil">
             <img src="file:///android_res/drawable/arrow.png">
@@ -29,13 +29,13 @@
 
     </div>
     <div class="bloc-batterie">
-        <div class="bloc-image-batterie"><div id="drag" class="unactivated"><img src="file:///android_res/drawable/batterie.png"></div></div>
-        <div class="bloc-image-fleche"><img src="file:///android_res/drawable/fleche.png">
+        <div class="bloc-image-batterie socle"><div id="drag" class="activated mirror"><img src="file:///android_res/drawable/batterie.png"></div></div>
+        <div class="bloc-image-fleche hide"><img src="file:///android_res/drawable/fleche.png">
             <p>Déplacez la batterie pour voir l’impact sur le scénario</p></div>
-        <div id="drop" class="bloc-image-socle-batterie"><img src="file:///android_res/drawable/socle_batterie.png"><p class="text-batterie  hide">Batterie en service </p></div>
+        <div id="drop" class="bloc-image-socle-batterie"><img src="file:///android_res/drawable/socle_batterie.png"><p class="text-batterie show">Batterie en service </p></div>
 
     </div>
-    <div class="bloc show" id="timeShiftingHeuresCreusesSansBatterie">
+    <div class="bloc hide" id="timeShiftingHeuresCreusesSansBatterie">
         <div class="bloc-premier-bloc"> Durant les heures creuses sans batterie</div>
         <div class="bloc-deuxieme-bloc color-vert">1000<span>€</span></div>
         <div class="bloc-troisieme-bloc">Le réseau fournit l'énergie.</div>
@@ -44,7 +44,7 @@
 
     </div>
 
-    <div class="bloc_deux hide" id="timeShiftingHeuresCreusesAvecBatterie">
+    <div class="bloc_deux shows" id="timeShiftingHeuresCreusesAvecBatterie">
         <div class="bloc-premier-bloc"> Durant les heures creuses avec batterie</div>
         <div class="bloc-deuxieme-bloc color-vert">1200<span>€</span></div>
         <div class="bloc-troisieme-bloc">Le réseau fournit l'énergie et recharge la batterie.</div>
@@ -69,7 +69,6 @@
         }
     });
 </script>
-
 <script>
     checkLed();
 </script>

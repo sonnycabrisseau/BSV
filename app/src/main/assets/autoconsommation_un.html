@@ -24,7 +24,7 @@
     </div>
     <div class="bloc-titre color-white">
         <h1>Autoconsommation</h1>
-        <p>Avec les ENR, l'énergie produite n'est consommé qu'en journée<br />
+        <p>Avec les énergies renouvelables, l'énergie produite n'est consommée qu'en journée<br />
             et le surplus est perdu</p>
 
     </div>
@@ -36,15 +36,15 @@
     </div>
     <div class="bloc show" id="autoConsommationDeNuitSansBatterie">
         <div class="bloc-premier-bloc"> De nuit sans batterie</div>
-        <div class="bloc-deuxieme-bloc">150<span class="euro">€</span> <span class="text-apres-euro">de dépense</span></div>
-        <div class="bloc-troisieme-bloc">De nuit et à faible vent, l'énergie parvient de<br />votre fournisseur d’énergie.</div>
+        <div class="bloc-deuxieme-bloc">1500<span class="euro">€</span> <span class="text-apres-euro">facture de consommation</span></div>
+        <div class="bloc-troisieme-bloc">De nuit et par faible vent, l'énergie provient du<br /> fournisseur d’énergie.</div>
         <div class="bloc-quatrieme-bloc"><img src="file:///android_res/drawable/graph_autocons.png"></div>
 
     </div>
     <div class="button_sur_bloc hide"><a href="file:///android_asset/autoconsommation_deux.html"><button>Comment se recharge la batterie ?</button></a></div>
     <div class="bloc_deux hide" id="autoConsommationDeNuitAvecBatterie">
         <div class="bloc-premier-bloc"> De nuit avec batterie</div>
-        <div class="bloc-deuxieme-bloc color-vert">50<span class="euro">€</span> <span class="text-apres-euro">de dépense</span></div>
+        <div class="bloc-deuxieme-bloc color-vert">500<span class="euro">€</span> <span class="text-apres-euro">facture de consommation</span></div>
         <div class="bloc-troisieme-bloc">La batterie, chargée durant la journée prend<br />le relais et fournit l'énergie nécessaire.</div>
         <div class="bloc-quatrieme-bloc"><img src="file:///android_res/drawable/graph_autocons_avec_bat.png"></div>
 
@@ -54,7 +54,18 @@
 <script src="file:///android_asset/jquery-ui.min.js"></script>
 <script src="file:///android_asset/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="file:///android_asset/dragAndDrop.js"></script>
-
+<script>
+    var timeoutHandle;
+    $("body").on({'touchstart': function()
+    {
+        clearTimeout(timeoutHandle);
+        timeoutHandle = setTimeout(function()
+        {
+            window.location.href="file:///android_asset/index.html";
+        }, 120000);
+        }
+    });
+</script>
 <script>
     checkLed();
 </script>

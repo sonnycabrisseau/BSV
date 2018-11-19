@@ -37,19 +37,19 @@
     </div>
     <div class="bloc show" id="timeShiftingHeuresPleinesSansBatterie">
         <div class="bloc-premier-bloc"> Durant les heures pleines sans batterie</div>
-        <div class="bloc-deuxieme-bloc">150<span>€</span></div>
-        <div class="bloc-troisieme-bloc">L'énergie fournie par le grid alimente<br /> les différents dispositifs en étant plus chère.</div>
-        <div class="bloc-quatrieme-bloc"><img src="file:///android_res/drawable/graph_horloge_hp.png"></div>
-        <div class="bloc-cinquieme-bloc"><a href="file:///android_asset/time_shifting_un.html"><button class="button-time">Changer d'horaires</button></a></div>
+        <div class="bloc-deuxieme-bloc">1500<span>€</span></div>
+        <div class="bloc-troisieme-bloc">Le réseau fournit l'énergie en étant plus chère.</div>
+        <div class="bloc-quatrieme-bloc"><img src="file:///android_res/drawable/horloge_2.gif"></div>
+        <div class="bloc-cinquieme-bloc"><a href="file:///android_asset/time_shifting_un.html"><button class="button-time">Changer d'horaire</button></a></div>
 
     </div>
 
     <div class="bloc_deux hide" id="timeShiftingHeuresPleinesAvecBatterie">
         <div class="bloc-premier-bloc"> Durant les heures pleines avec batterie</div>
-        <div class="bloc-deuxieme-bloc color-vert">100<span>€</span></div>
-        <div class="bloc-troisieme-bloc">La batterie prend le relais pour éviter<br /> un surcoût.</div>
-        <div class="bloc-quatrieme-bloc"><img src="file:///android_res/drawable/graph_horloge_hp.png"></div>
-        <div class="bloc-cinquieme-bloc"><a href="file:///android_asset/time_shifting_un.html"><button class="button-time">Changer d'horaires</button></a></div>
+        <div class="bloc-deuxieme-bloc color-vert">500<span>€</span></div>
+        <div class="bloc-troisieme-bloc">La batterie se décharge pour limiter les<br /> surcoûts provenant du réseau.</div>
+        <div class="bloc-quatrieme-bloc"><img src="file:///android_res/drawable/horloge_2.gif"></div>
+        <div class="bloc-cinquieme-bloc"><a href="file:///android_asset/time_shifting_trois.html"><button class="button-time">Changer d'horaire</button></a></div>
 
     </div>
 </div></div>
@@ -57,7 +57,18 @@
 <script src="file:///android_asset/jquery-ui.min.js"></script>
 <script src="file:///android_asset/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="file:///android_asset/dragAndDrop.js"></script>
-
+<script>
+    var timeoutHandle;
+    $("body").on({'touchstart': function()
+    {
+        clearTimeout(timeoutHandle);
+        timeoutHandle = setTimeout(function()
+        {
+            window.location.href="file:///android_asset/index.html";
+        }, 120000);
+        }
+    });
+</script>
 <script>
     checkLed();
 </script>

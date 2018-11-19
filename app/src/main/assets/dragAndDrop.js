@@ -28,6 +28,7 @@ $( function() {
         $(".text-batterie").addClass("show")
         $(".bloc-image-fleche").removeClass("show")
         $(".bloc-image-fleche").addClass("hide")
+        $(".bloc-image-batterie").addClass("socle")
         var class_grad = $( "#drag" ).attr('class')
         console.log(class_grad)
 
@@ -65,6 +66,8 @@ $( function() {
             $(".bloc-image-fleche").removeClass("hide")
             $(".bloc-image-fleche").addClass("show")
             class_grad = $( "#drag" ).attr('class')
+
+            $(".bloc-image-batterie").removeClass("socle")
             console.log(class_grad);
 
             checkLed ();

@@ -14,6 +14,7 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -93,8 +94,19 @@ public class MainActivity extends Activity
                 view.getSettings().setJavaScriptEnabled(true);
 
                 //try to accelerate the application
-                view.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+                //view.setLayerType(View.LAYER_TYPE_HARDWARE, null);
                 view.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+                //sonny
+                view.setWebChromeClient(new WebChromeClient());
+               // view.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
+                if (Build.VERSION.SDK_INT >= 19) { view.setLayerType(View.LAYER_TYPE_HARDWARE, null); } else { view.setLayerType(View.LAYER_TYPE_SOFTWARE, null); }
+                view.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+                view.getSettings().setAppCacheEnabled(true);
+                view.getSettings().setDomStorageEnabled(true);
+                view.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+
+
+
 
                 //envoie de l'interface pour pour les messages bluetooth
                 view.addJavascriptInterface(javaScriptInterface, "JavaScriptInterface");

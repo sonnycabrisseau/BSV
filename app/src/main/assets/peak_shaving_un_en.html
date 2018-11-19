@@ -9,46 +9,45 @@
 <body>
 <div id="container-page-deux"><div class="background">
     <div class="menu-left">
-        <a href="file:///android_asset/index.html"><div class="bloc-accueil">
+        <a href="file:///android_asset/indexEn.html"><div class="bloc-accueil">
             <img src="file:///android_res/drawable/arrow.png">
-            <p>Accueil</p>
+            <p>Home</p>
         </div></a>
 
         <div class="menu-left-position">
-            <a href="file:///android_asset/peak_shaving_un.html"><div class="bloc-image-menu  active"><img src="file:///android_res/drawable/graph_menu.png"></div></a>
-            <a href="file:///android_asset/autoconsommation_un.html"><div class="bloc-image-menu "><img src="file:///android_res/drawable/heolien_menu.png"></div></a>
-            <a href="file:///android_asset/time_shifting_un.html"><div class="bloc-image-menu"><img src="file:///android_res/drawable/cochon_menu.png"></div></a>
-            <a href="file:///android_asset/ilot_un.html"><div class="bloc-image-menu"><img src="file:///android_res/drawable/ilot_menu.png"></div></a>
+            <a href="file:///android_asset/peak_shaving_un_en.html"><div class="bloc-image-menu  active"><img src="file:///android_res/drawable/graph_menu.png"></div></a>
+            <a href="file:///android_asset/autoconsommation_un_en.html"><div class="bloc-image-menu "><img src="file:///android_res/drawable/heolien_menu.png"></div></a>
+            <a href="file:///android_asset/time_shifting_un_en.html"><div class="bloc-image-menu"><img src="file:///android_res/drawable/cochon_menu.png"></div></a>
+            <a href="file:///android_asset/ilot_un_en.html"><div class="bloc-image-menu"><img src="file:///android_res/drawable/ilot_menu.png"></div></a>
 
         </div>
     </div>
     <div class="bloc-titre">
         <h1 class="color-vert">Peak shaving</h1>
-        <p>Lors de la recharge de véhicules électriques à la même heure,<br />
-            la consommation augmente avec le risque de dépasser l’abonnement souscrit</p>
+        <p>while charging electrical vehicles  at the same time,<br />
+            the consumption increases with the risk of exceeding the subscribed contract</p>
 
     </div>
     <div class="bloc-batterie">
         <div class="bloc-image-batterie "><div id="drag" class="unactivated"><img  src="file:///android_res/drawable/batterie.png"></div></div>
         <div class="bloc-image-fleche show"><img src="file:///android_res/drawable/fleche.png">
-            <p>Déplacez la batterie pour voir l’impact sur le scénario</p></div>
-        <div id="drop" class="bloc-image-socle-batterie"><img  src="file:///android_res/drawable/socle_batterie.png"><p class="text-batterie hide">Batterie en service </p></div>
+            <p>Move the battery to see the impact on the scenario</p></div>
+        <div id="drop" class="bloc-image-socle-batterie"><img  src="file:///android_res/drawable/socle_batterie.png"><p class="text-batterie hide">Battery in use</p></div>
     </div>
     <div class="bloc show" id="peakShavingSansBatterie">
-        <div class="bloc-premier-bloc"> Facture d’électricité sans batterie</div>
+        <div class="bloc-premier-bloc"> Electricity invoice without battery</div>
         <div class="bloc-deuxieme-bloc">4000<span>€</span></div>
-        <div class="bloc-troisieme-bloc">Dépassement de l’abonnement auprès<br /> du fournisseur d’énergie.</div>
+        <div class="bloc-troisieme-bloc">Subscription overrun with energy supplier.</div>
         <div class="bloc-quatrieme-bloc" id="bloc-quate">
             <div id="graph-peak"></div>
-            <!-- <img src="file:///android_res/drawable/graph_peak.png"> -->
         </div>
 
     </div>
 
     <div class="bloc_deux hide" id="peakShavingAvecBatterie">
-        <div class="bloc-premier-bloc"> Facture d’électricité avec batterie</div>
+        <div class="bloc-premier-bloc"> Electricity invoice with battery</div>
         <div class="bloc-deuxieme-bloc color-vert">3000<span>€</span></div>
-        <div class="bloc-troisieme-bloc">Aucun dépassement de l’abonnement auprès<br />du fournisseur d’énergie.</div>
+        <div class="bloc-troisieme-bloc">No subscription overrun with the energy supplier.</div>
         <div class="bloc-quatrieme-bloc">
             <div id="graph-peak-deux"></div>
         </div>
@@ -62,8 +61,8 @@
 <script src="file:///android_asset/bodymovin.js"></script>
 <script src="file:///android_asset/anime.js"></script>
 <script src="file:///android_asset/animations.js"></script>
-<script src="file:///android_asset/graph_peak.json"></script>
-<script src="file:///android_asset/graph_peak_bat.json"></script>
+<script src="file:///android_asset/graph_peak_en.json"></script>
+<script src="file:///android_asset/graph_peak_bat_en.json"></script>
 <script>
     var anim_graph;
     var elem = document.getElementById("graph-peak");
@@ -112,13 +111,11 @@
         clearTimeout(timeoutHandle);
         timeoutHandle = setTimeout(function()
         {
-            window.location.href="file:///android_asset/index.html";
+            window.location.href="file:///android_asset/indexEn.html";
         }, 120000);
         }
     });
-
 </script>
-
 <script>
     checkLed();
 </script>
