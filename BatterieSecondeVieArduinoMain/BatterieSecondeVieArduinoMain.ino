@@ -225,9 +225,9 @@ void peakShavingAvecBatterie() //Scénario 1 numéro 2
   }
 
  //eteins le mid
- if(i > 36)
+ if(i > 26 && i < 30)
  {
-    stripBatterie.setPixelColor(i - 38, 0, 0, 0);
+    stripBatterie.setPixelColor(i - 27, 0, 0, 0);
     stripBatterie.show();
  }
   
