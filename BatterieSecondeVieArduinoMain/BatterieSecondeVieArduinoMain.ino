@@ -22,6 +22,7 @@
 #define ASCENSEURBIS_COUNT 7
 
 #define LED_PIN 4
+#define MOTOR_PIN 7
 
 Adafruit_NeoPixel stripUsine = Adafruit_NeoPixel(MID_USINE_COUNT, MID_USINE_PIN, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel stripER = Adafruit_NeoPixel(MID_ER_COUNT, MID_ER_PIN, NEO_GRB + NEO_KHZ800);
@@ -51,6 +52,8 @@ String msg = "";
 bool newStringComplete = false;
 String tmpMessage;
 
+int motorSpeed = 100; //From 0(0V) to 255(5V)
+
 void setup() 
 {
   stripUsine.begin();
@@ -70,6 +73,7 @@ void setup()
   stripAscenseurBis.show();
 
   pinMode(LED_PIN, OUTPUT);
+  pinMode(MOTOR_PIN, OUTPUT);
 
   Serial.begin(9600);
 }
@@ -197,6 +201,7 @@ void peakShavingSansBatterie() //Sénario 1 numéro 1
 void peakShavingAvecBatterie() //Scénario 1 numéro 2
 {
   digitalWrite(LED_PIN, HIGH);
+  batterieTopLedOn();
   int reverseNum = 49;
   for(int i = 0; i < 48; i++)
   {
@@ -262,18 +267,21 @@ void peakShavingAvecBatterie() //Scénario 1 numéro 2
     }
 
     ascenseur(i, 37);
-
+  batterieTopLedOn();
   reverseNum--;
   delay(normalSpeed);
   }
 
  delay(normalSpeed);
  digitalWrite(LED_PIN, LOW);
+ batterieTopLedOff();
 }
 
 void autoConsommationDejourAvecBatterie() //Scénario 2 numéro 3
 {
+  digitalWrite(LED_PIN, HIGH);
   int reverseNum = 50;
+  analogWrite(MOTOR_PIN, motorSpeed);
   for(int i = 0; i < 50; i++)
   {
     stripUsine.setBrightness(5);
@@ -351,16 +359,19 @@ void autoConsommationDejourAvecBatterie() //Scénario 2 numéro 3
     reverseNum--;
     delay(normalSpeed);
   }
-
   delay(normalSpeed);
+  analogWrite(MOTOR_PIN, 0);
+  digitalWrite(LED_PIN, LOW);
 }
 
 void autoConsommationDeNuitAvecBatterie() //Scénaro 2 numéro 4
 {
   digitalWrite(LED_PIN, HIGH);
+  batterieTopLedOn();
   int reverseNum = 48;
   for(int i = 0; i < 48; i++)
   {
+    batterieTopLedOn();
     stripUsine.setBrightness(5);
     stripUsine.setPixelColor(reverseNum - 24, CYAN[0], CYAN[1], CYAN[2]);
     stripUsine.show(); 
@@ -409,6 +420,13 @@ void autoConsommationDeNuitAvecBatterie() //Scénaro 2 numéro 4
       stripMaison.show();
     }
 
+    //allumer voiture
+    if(i > 28)
+    {
+      stripVoiture.setPixelColor(i - 30, CYAN[0], CYAN[1], CYAN[2]);
+      stripVoiture.show();
+    }
+
     //eteins maison
     if(i > 37)
     {
@@ -416,14 +434,22 @@ void autoConsommationDeNuitAvecBatterie() //Scénaro 2 numéro 4
       stripMaison.show();
     }
 
-    ascenseur(i, 36);
+    //eteins voiture
+    if(i > 37)
+    {
+      stripVoiture.setPixelColor(i - 39, 0, 0, 0);
+      stripVoiture.show();
+    }
 
+    ascenseur(i, 36);
+    batterieTopLedOn();
     reverseNum--;
     delay(normalSpeed);
   }
 
   delay(normalSpeed);
   digitalWrite(LED_PIN, LOW);
+  batterieTopLedOff();
 }
 
 void autoConsommationDeNuitSansBatterie() //Scénario 2 numéro 5
@@ -462,11 +488,25 @@ void autoConsommationDeNuitSansBatterie() //Scénario 2 numéro 5
       stripMaison.show();
     }
 
+    //allumer voiture
+    if(i > 28)
+    {
+      stripVoiture.setPixelColor(i - 30, CYAN[0], CYAN[1], CYAN[2]);
+      stripVoiture.show();
+    }
+
     //eteins maison
     if(i > 37)
     {
       stripMaison.setPixelColor(i - 39, 0, 0, 0);
       stripMaison.show();
+    }
+
+    //eteins voiture
+    if(i > 37)
+    {
+      stripVoiture.setPixelColor(i - 39, 0, 0, 0);
+      stripVoiture.show();
     }
 
     ascenseur(i, 36);
@@ -481,9 +521,12 @@ void autoConsommationDeNuitSansBatterie() //Scénario 2 numéro 5
 void ilotAvecBatterie() //Scénario 3 numéro 6
 {
   digitalWrite(LED_PIN, HIGH);
+  analogWrite(MOTOR_PIN, motorSpeed);
+  batterieTopLedOn();
   int reverseNum = 44;
   for(int i = 0; i < 44; i++)
   {
+    batterieTopLedOn();
     //allume er avec lag
     if((i % 2) == 0)
     {
@@ -545,19 +588,22 @@ void ilotAvecBatterie() //Scénario 3 numéro 6
     }
 
     ascenseur(i, 33);
-    
+    batterieTopLedOn();
     reverseNum--;
     delay(normalSpeed);
   }
 
   delay(normalSpeed);
   digitalWrite(LED_PIN, LOW);
+  analogWrite(MOTOR_PIN, 0);
+  batterieTopLedOff();
 }
 
 
 void ilotSansBatterie() //Scénario 3 numéro 7
 {
   int reverseNum = 44;
+  analogWrite(MOTOR_PIN, motorSpeed);
   for(int i = 0; i < 44; i++)
   {
     //allume er avec lag
@@ -610,11 +656,13 @@ void ilotSansBatterie() //Scénario 3 numéro 7
     delay(normalSpeed);
   }
 
+  analogWrite(MOTOR_PIN, 0);
   delay(normalSpeed);
 }
 
 void timeShiftingHeuresCreusesAvecBatterie() //Scénario 4 numéro 8
 {
+  digitalWrite(LED_PIN, HIGH);
   int reverseNum = 50;
   for(int i = 0; i < 50; i++)
   {
@@ -684,6 +732,7 @@ void timeShiftingHeuresCreusesAvecBatterie() //Scénario 4 numéro 8
   }
 
   delay(normalSpeed);
+  digitalWrite(LED_PIN, LOW);
 }
 
 void timeShiftingHeuresCreusesSansBatterie() //Scénario 4 numéro 9
@@ -744,9 +793,11 @@ void timeShiftingHeuresCreusesSansBatterie() //Scénario 4 numéro 9
 void timeShiftingHeuresPleinesAvecBatterie() //Scénario 4 numéro 10
 {
   digitalWrite(LED_PIN, HIGH);
+  batterieTopLedOn();
   int reverseNum = 49;
   for(int i = 0; i < 48; i++)
   {
+      batterieTopLedOn();
       stripUsine.setBrightness(5);
       stripUsine.setPixelColor(reverseNum - 25, CYAN[0], CYAN[1], CYAN[2]);
       stripUsine.show(); 
@@ -808,13 +859,14 @@ void timeShiftingHeuresPleinesAvecBatterie() //Scénario 4 numéro 10
       stripVoiture.show();
     }
 
-    ascenseur(i, 37);
-
+  ascenseur(i, 37);
+  batterieTopLedOn();
   reverseNum--;
   delay(normalSpeed);
   }
- digitalWrite(LED_PIN, LOW);
  delay(normalSpeed);
+ batterieTopLedOff();
+ digitalWrite(LED_PIN, LOW);
 }
 
 void timeShiftingHeuresPleinesSansBatterie() //Scénario 4 numéro 11
@@ -944,7 +996,6 @@ void ascenseur(int i, int startValue)
 
 void offAscenseur()
 {
-
   ascenseurLevel = 0; //last level = 6;
   ascenseurUp = true;
   ascenseurDown = false;
@@ -982,6 +1033,26 @@ void chenillardUp(Adafruit_NeoPixel strip, int nbLed, int temps, int color[3])
     strip.setPixelColor(i+4, 0, 0, 0);
     strip.show();
   }
+}
+
+void batterieTopLedOff()
+{
+    stripBatterie.setPixelColor(11, 0, 0, 0);
+    stripBatterie.setPixelColor(12, 0, 0, 0);
+    stripBatterie.setPixelColor(13, 0, 0, 0);
+    stripBatterie.setPixelColor(14, 0, 0, 0);
+    stripBatterie.setPixelColor(15, 0, 0, 0);
+    stripBatterie.show();
+}
+
+void batterieTopLedOn()
+{
+    stripBatterie.setPixelColor(11, CYAN[0], CYAN[1], CYAN[2]);
+    stripBatterie.setPixelColor(12, CYAN[0], CYAN[1], CYAN[2]);
+    stripBatterie.setPixelColor(13, CYAN[0], CYAN[1], CYAN[2]);
+    stripBatterie.setPixelColor(14, CYAN[0], CYAN[1], CYAN[2]);
+    stripBatterie.setPixelColor(15, CYAN[0], CYAN[1], CYAN[2]);
+    stripBatterie.show();
 }
 
 void chenillardDown(Adafruit_NeoPixel strip, int nbLed, int temps, int color[3])
@@ -1078,6 +1149,8 @@ void allChenillard()
 void off()
 {
   offAscenseur();
+  analogWrite(MOTOR_PIN, 0);
+  digitalWrite(LED_PIN, LOW);
   
   for(int i = 0; i < 25; i++)
   {
