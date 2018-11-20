@@ -818,9 +818,9 @@ void timeShiftingHeuresPleinesAvecBatterie() //Scénario 4 numéro 10
   }
 
  //eteins le mid
- if(i > 36)
+ if(i > 26 && i < 30)
  {
-    stripBatterie.setPixelColor(i - 38, 0, 0, 0);
+    stripBatterie.setPixelColor(i - 29, 0, 0, 0);
     stripBatterie.show();
  }
   
