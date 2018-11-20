@@ -306,16 +306,16 @@ void autoConsommationDejourAvecBatterie() //Scénario 2 numéro 3
     }
 
     //allume le mid
-    if(i > 25)
+    if(i > 25 && i < 30)
     {
       stripBatterie.setPixelColor(i-26, CYAN[0], CYAN[1], CYAN[2]);
       stripBatterie.show();
     }
 
     //eteins le mid
-    if(i > 34)
+    if(i > 27 && i < 31)
     {
-      stripBatterie.setPixelColor(i-35, 0, 0, 0);
+      stripBatterie.setPixelColor(i - 28, 0, 0, 0);
       stripBatterie.show();
     }
 
