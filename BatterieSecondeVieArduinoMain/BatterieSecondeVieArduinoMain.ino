@@ -22,6 +22,7 @@
 #define ASCENSEURBIS_COUNT 7
 
 #define LED_PIN 4
+#define LED_ER_PIN 8
 #define MOTOR_PIN 7
 
 Adafruit_NeoPixel stripUsine = Adafruit_NeoPixel(MID_USINE_COUNT, MID_USINE_PIN, NEO_GRB + NEO_KHZ800);
@@ -73,6 +74,7 @@ void setup()
   stripAscenseurBis.show();
 
   pinMode(LED_PIN, OUTPUT);
+  pinMode(LED_ER_PIN, OUTPUT);
   pinMode(MOTOR_PIN, OUTPUT);
 
   Serial.begin(9600);
@@ -282,6 +284,7 @@ void autoConsommationDejourAvecBatterie() //Scénario 2 numéro 3
   digitalWrite(LED_PIN, HIGH);
   int reverseNum = 50;
   analogWrite(MOTOR_PIN, motorSpeed);
+  digitalWrite(LED_ER_PIN, HIGH);
   for(int i = 0; i < 50; i++)
   {
     stripUsine.setBrightness(5);
@@ -313,7 +316,7 @@ void autoConsommationDejourAvecBatterie() //Scénario 2 numéro 3
     }
 
     //eteins le mid
-    if(i > 27 && i < 31)
+    if(i > 27)
     {
       stripBatterie.setPixelColor(i - 28, 0, 0, 0);
       stripBatterie.show();
@@ -362,6 +365,7 @@ void autoConsommationDejourAvecBatterie() //Scénario 2 numéro 3
   delay(normalSpeed);
   analogWrite(MOTOR_PIN, 0);
   digitalWrite(LED_PIN, LOW);
+  digitalWrite(LED_ER_PIN, HIGH);
 }
 
 void autoConsommationDeNuitAvecBatterie() //Scénaro 2 numéro 4
@@ -521,6 +525,7 @@ void autoConsommationDeNuitSansBatterie() //Scénario 2 numéro 5
 void ilotAvecBatterie() //Scénario 3 numéro 6
 {
   digitalWrite(LED_PIN, HIGH);
+  digitalWrite(LED_ER_PIN, HIGH);
   analogWrite(MOTOR_PIN, motorSpeed);
   batterieTopLedOn();
   int reverseNum = 44;
@@ -595,6 +600,7 @@ void ilotAvecBatterie() //Scénario 3 numéro 6
 
   delay(normalSpeed);
   digitalWrite(LED_PIN, LOW);
+  digitalWrite(LED_ER_PIN, LOW);
   analogWrite(MOTOR_PIN, 0);
   batterieTopLedOff();
 }
@@ -604,6 +610,7 @@ void ilotSansBatterie() //Scénario 3 numéro 7
 {
   int reverseNum = 44;
   analogWrite(MOTOR_PIN, motorSpeed);
+  digitalWrite(LED_ER_PIN, HIGH);
   for(int i = 0; i < 44; i++)
   {
     //allume er avec lag
@@ -657,6 +664,7 @@ void ilotSansBatterie() //Scénario 3 numéro 7
   }
 
   analogWrite(MOTOR_PIN, 0);
+  digitalWrite(LED_ER_PIN, LOW);
   delay(normalSpeed);
 }
 
@@ -818,9 +826,9 @@ void timeShiftingHeuresPleinesAvecBatterie() //Scénario 4 numéro 10
   }
 
  //eteins le mid
- if(i > 26 && i < 30)
+ if(i > 26)
  {
-    stripBatterie.setPixelColor(i - 29, 0, 0, 0);
+    stripBatterie.setPixelColor(i - 27, 0, 0, 0);
     stripBatterie.show();
  }
   
@@ -1151,6 +1159,7 @@ void off()
   offAscenseur();
   analogWrite(MOTOR_PIN, 0);
   digitalWrite(LED_PIN, LOW);
+  digitalWrite(LED_ER_PIN, LOW);
   
   for(int i = 0; i < 25; i++)
   {
